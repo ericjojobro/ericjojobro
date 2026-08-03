@@ -3,60 +3,471 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>My Bold Website</title>
-
-<!-- FONT FOR MATH BOLD STYLE -->
-<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
-
+<title>Alex Rivera — Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;800&family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
-body {
-    margin: 0;
-    font-family: 'Orbitron', sans-serif;
-    background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
-    color: white;
-    text-align: center;
-}
+  :root{
+    --bg-1:#0a0e1a;
+    --bg-2:#12172b;
+    --bg-3:#1a1233;
+    --cyan:#5ce1ff;
+    --violet:#a78bfa;
+    --text:#e9ecf7;
+    --muted:#8d96b8;
+    --glass:rgba(255,255,255,0.045);
+    --glass-border:rgba(255,255,255,0.09);
+    --radius:18px;
+  }
 
-.container {
-    padding: 100px 20px;
-}
+  *{margin:0;padding:0;box-sizing:border-box;}
 
-h1 {
-    font-size: 40px;
-    font-weight: 700;
-}
+  html{scroll-behavior:smooth;}
 
-p {
-    font-size: 18px;
-    opacity: 0.8;
-}
+  body{
+    font-family:'Space Grotesk', sans-serif;
+    color:var(--text);
+    background:
+      radial-gradient(circle at 15% 10%, rgba(92,225,255,0.08), transparent 40%),
+      radial-gradient(circle at 85% 25%, rgba(167,139,250,0.10), transparent 45%),
+      linear-gradient(160deg, var(--bg-1) 0%, var(--bg-2) 45%, var(--bg-3) 100%);
+    background-attachment:fixed;
+    min-height:100vh;
+    line-height:1.6;
+  }
 
-.btn {
-    display: inline-block;
-    margin-top: 20px;
-    padding: 12px 25px;
-    background: #00ffcc;
-    color: black;
-    text-decoration: none;
-    border-radius: 8px;
-    font-weight: bold;
-}
+  h1,h2,h3{
+    font-family:'Orbitron', sans-serif;
+    font-weight:800;
+    letter-spacing:0.02em;
+  }
 
-.btn:hover {
-    background: #00ccaa;
-}
+  a{color:inherit;text-decoration:none;}
+
+  section{
+    padding:100px 24px;
+    max-width:1080px;
+    margin:0 auto;
+  }
+
+  /* ---------- Navbar ---------- */
+  header{
+    position:sticky;
+    top:0;
+    z-index:100;
+    backdrop-filter:blur(14px);
+    -webkit-backdrop-filter:blur(14px);
+    background:rgba(10,14,26,0.55);
+    border-bottom:1px solid var(--glass-border);
+  }
+
+  nav{
+    max-width:1080px;
+    margin:0 auto;
+    padding:18px 24px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+  }
+
+  .logo{
+    font-family:'Orbitron', sans-serif;
+    font-weight:800;
+    font-size:1.15rem;
+    letter-spacing:0.05em;
+    background:linear-gradient(90deg, var(--cyan), var(--violet));
+    -webkit-background-clip:text;
+    background-clip:text;
+    color:transparent;
+  }
+
+  .nav-links{
+    display:flex;
+    gap:32px;
+    list-style:none;
+  }
+
+  .nav-links a{
+    font-size:0.92rem;
+    font-weight:500;
+    color:var(--muted);
+    position:relative;
+    padding:4px 2px;
+    transition:color 0.25s ease;
+  }
+
+  .nav-links a::after{
+    content:'';
+    position:absolute;
+    left:0;
+    bottom:-2px;
+    width:0%;
+    height:2px;
+    background:linear-gradient(90deg, var(--cyan), var(--violet));
+    transition:width 0.25s ease;
+  }
+
+  .nav-links a:hover{color:var(--text);}
+  .nav-links a:hover::after{width:100%;}
+
+  /* ---------- Hero ---------- */
+  .hero{
+    min-height:88vh;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    position:relative;
+  }
+
+  .hero-ring{
+    position:absolute;
+    width:520px;
+    height:520px;
+    border-radius:50%;
+    border:1px solid rgba(92,225,255,0.15);
+    animation:spin 40s linear infinite;
+    pointer-events:none;
+  }
+
+  .hero-ring::before{
+    content:'';
+    position:absolute;
+    top:-1px;
+    left:50%;
+    width:6px;
+    height:6px;
+    background:var(--cyan);
+    border-radius:50%;
+    box-shadow:0 0 12px 3px var(--cyan);
+  }
+
+  .hero-ring.outer{
+    width:680px;
+    height:680px;
+    border:1px solid rgba(167,139,250,0.12);
+    animation:spin 60s linear infinite reverse;
+  }
+
+  .hero-ring.outer::before{
+    background:var(--violet);
+    box-shadow:0 0 12px 3px var(--violet);
+  }
+
+  @keyframes spin{
+    from{transform:rotate(0deg);}
+    to{transform:rotate(360deg);}
+  }
+
+  .eyebrow{
+    font-size:0.85rem;
+    letter-spacing:0.35em;
+    text-transform:uppercase;
+    color:var(--cyan);
+    margin-bottom:22px;
+    z-index:1;
+  }
+
+  .hero h1{
+    font-size:clamp(2.6rem, 8vw, 5.2rem);
+    line-height:1.05;
+    background:linear-gradient(100deg, #ffffff 20%, var(--cyan) 55%, var(--violet) 85%);
+    -webkit-background-clip:text;
+    background-clip:text;
+    color:transparent;
+    z-index:1;
+  }
+
+  .hero p{
+    margin-top:20px;
+    max-width:520px;
+    color:var(--muted);
+    font-size:1.05rem;
+    z-index:1;
+  }
+
+  .hero-actions{
+    margin-top:38px;
+    display:flex;
+    gap:18px;
+    z-index:1;
+  }
+
+  .btn{
+    font-family:'Space Grotesk', sans-serif;
+    font-weight:600;
+    font-size:0.95rem;
+    padding:13px 30px;
+    border-radius:999px;
+    cursor:pointer;
+    border:1px solid var(--glass-border);
+    transition:transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+  }
+
+  .btn-primary{
+    background:linear-gradient(90deg, var(--cyan), var(--violet));
+    color:#0a0e1a;
+    border:none;
+  }
+
+  .btn-primary:hover{
+    transform:translateY(-3px);
+    box-shadow:0 10px 30px rgba(92,225,255,0.25);
+  }
+
+  .btn-ghost{
+    background:var(--glass);
+    color:var(--text);
+  }
+
+  .btn-ghost:hover{
+    transform:translateY(-3px);
+    background:rgba(255,255,255,0.08);
+  }
+
+  /* ---------- Section headings ---------- */
+  .section-tag{
+    font-size:0.78rem;
+    letter-spacing:0.3em;
+    text-transform:uppercase;
+    color:var(--violet);
+    margin-bottom:12px;
+    display:block;
+  }
+
+  .section-title{
+    font-size:clamp(1.6rem, 4vw, 2.4rem);
+    margin-bottom:34px;
+  }
+
+  /* ---------- About ---------- */
+  .about-card{
+    background:var(--glass);
+    border:1px solid var(--glass-border);
+    border-radius:var(--radius);
+    padding:40px;
+    backdrop-filter:blur(10px);
+    -webkit-backdrop-filter:blur(10px);
+  }
+
+  .about-card p{
+    color:var(--muted);
+    font-size:1.02rem;
+    max-width:680px;
+  }
+
+  .about-card p + p{margin-top:14px;}
+
+  .about-tags{
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px;
+    margin-top:26px;
+  }
+
+  .about-tags span{
+    font-size:0.82rem;
+    padding:7px 16px;
+    border-radius:999px;
+    background:rgba(255,255,255,0.05);
+    border:1px solid var(--glass-border);
+    color:var(--cyan);
+  }
+
+  /* ---------- Projects ---------- */
+  .projects-grid{
+    display:grid;
+    grid-template-columns:repeat(3, 1fr);
+    gap:24px;
+  }
+
+  .project-card{
+    background:var(--glass);
+    border:1px solid var(--glass-border);
+    border-radius:var(--radius);
+    padding:30px;
+    backdrop-filter:blur(10px);
+    -webkit-backdrop-filter:blur(10px);
+    transition:transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .project-card:hover{
+    transform:translateY(-8px);
+    border-color:rgba(92,225,255,0.35);
+    box-shadow:0 18px 40px rgba(0,0,0,0.35);
+  }
+
+  .project-icon{
+    width:44px;
+    height:44px;
+    border-radius:12px;
+    background:linear-gradient(135deg, var(--cyan), var(--violet));
+    margin-bottom:20px;
+  }
+
+  .project-card h3{
+    font-size:1.05rem;
+    margin-bottom:10px;
+    letter-spacing:0.01em;
+  }
+
+  .project-card p{
+    color:var(--muted);
+    font-size:0.92rem;
+    margin-bottom:18px;
+  }
+
+  .project-link{
+    font-size:0.85rem;
+    font-weight:600;
+    color:var(--cyan);
+    border-bottom:1px solid transparent;
+    transition:border-color 0.25s ease;
+  }
+
+  .project-link:hover{border-color:var(--cyan);}
+
+  /* ---------- Contact ---------- */
+  .contact-card{
+    background:var(--glass);
+    border:1px solid var(--glass-border);
+    border-radius:var(--radius);
+    padding:50px 40px;
+    text-align:center;
+    backdrop-filter:blur(10px);
+    -webkit-backdrop-filter:blur(10px);
+  }
+
+  .contact-card p{
+    color:var(--muted);
+    max-width:480px;
+    margin:0 auto 30px;
+  }
+
+  .contact-links{
+    display:flex;
+    justify-content:center;
+    gap:16px;
+    flex-wrap:wrap;
+  }
+
+  /* ---------- Footer ---------- */
+  footer{
+    text-align:center;
+    padding:36px 24px;
+    color:var(--muted);
+    font-size:0.85rem;
+    border-top:1px solid var(--glass-border);
+  }
+
+  footer span{color:var(--cyan);}
+
+  /* ---------- Responsive ---------- */
+  @media (max-width:800px){
+    .projects-grid{grid-template-columns:1fr;}
+    .nav-links{gap:18px;}
+    .hero-ring{width:340px;height:340px;}
+    .hero-ring.outer{width:440px;height:440px;}
+  }
+
+  @media (max-width:520px){
+    nav{padding:16px;}
+    .nav-links{gap:12px;}
+    .nav-links a{font-size:0.8rem;}
+    section{padding:70px 18px;}
+    .about-card, .contact-card{padding:26px;}
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    .hero-ring{animation:none;}
+  }
 </style>
 </head>
-
 <body>
 
-<div class="container">
-    <h1>𝙀𝙧𝙞𝙘 𝙅𝙤𝙟𝙤 𝘽𝙧𝙤</h1>
-    <p>𝙒𝙚𝙡𝙘𝙤𝙢𝙚 𝙩𝙤 𝙢𝙮 𝙢𝙖𝙩𝙝 𝙗𝙤𝙡𝙙 𝙬𝙚𝙗𝙨𝙞𝙩𝙚</p>
+<header>
+  <nav>
+    <div class="logo">A.RIVERA</div>
+    <ul class="nav-links">
+      <li><a href="#home">Home</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+</header>
 
-    <a href="#" class="btn">𝘾𝙤𝙣𝙩𝙖𝙘𝙩 𝙈𝙚</a>
-</div>
+<section class="hero" id="home">
+  <div class="hero-ring"></div>
+  <div class="hero-ring outer"></div>
+  <span class="eyebrow">Software Engineer · Builder</span>
+  <h1>ALEX RIVERA</h1>
+  <p>I design and build fast, thoughtful digital products — from interfaces to the systems behind them.</p>
+  <div class="hero-actions">
+    <a href="#projects" class="btn btn-primary">View Work</a>
+    <a href="#contact" class="btn btn-ghost">Get in Touch</a>
+  </div>
+</section>
+
+<section id="about">
+  <span class="section-tag">About</span>
+  <h2 class="section-title">Who I Am</h2>
+  <div class="about-card">
+    <p>I'm a software engineer who enjoys turning complex problems into clean, usable products. Over the past few years I've worked across frontend, backend, and everything in between — always chasing simplicity without losing depth.</p>
+    <p>When I'm not coding, I'm usually reading about design systems, tinkering with side projects, or exploring new tools that push the web forward.</p>
+    <div class="about-tags">
+      <span>JavaScript</span>
+      <span>React</span>
+      <span>Node.js</span>
+      <span>UI/UX</span>
+      <span>Python</span>
+    </div>
+  </div>
+</section>
+
+<section id="projects">
+  <span class="section-tag">Projects</span>
+  <h2 class="section-title">Selected Work</h2>
+  <div class="projects-grid">
+    <div class="project-card">
+      <div class="project-icon"></div>
+      <h3>Nova Dashboard</h3>
+      <p>A real-time analytics dashboard with clean data visualization and a minimal, focused interface.</p>
+      <a href="#" class="project-link">View Project →</a>
+    </div>
+    <div class="project-card">
+      <div class="project-icon"></div>
+      <h3>Pulse Chat</h3>
+      <p>A lightweight messaging app built for speed, featuring live updates and a distraction-free UI.</p>
+      <a href="#" class="project-link">View Project →</a>
+    </div>
+    <div class="project-card">
+      <div class="project-icon"></div>
+      <h3>Orbit Planner</h3>
+      <p>A task and project planner that keeps teams aligned with a simple, visual workflow.</p>
+      <a href="#" class="project-link">View Project →</a>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <span class="section-tag">Contact</span>
+  <h2 class="section-title">Let's Talk</h2>
+  <div class="contact-card">
+    <p>Have a project in mind or just want to say hello? My inbox is always open.</p>
+    <div class="contact-links">
+      <a href="mailto:hello@alexrivera.dev" class="btn btn-primary">Email Me</a>
+      <a href="#" class="btn btn-ghost">LinkedIn</a>
+      <a href="#" class="btn btn-ghost">GitHub</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  © 2026 <span>Alex Rivera</span>. Built with HTML &amp; CSS.
+</footer>
 
 </body>
 </html>
